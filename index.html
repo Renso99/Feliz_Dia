@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
 <meta charset="UTF-8">
 <title>Día de la Mujer</title>
 
 <style>
+/* TEXTO SUPERIOR IZQUIERDO */
+
+.textoSuperior{
+position:fixed;
+top:20px;
+left:25px;
+font-family:'Great Vibes', cursive;
+font-size:38px;
+color:#ff4fa3;
+text-shadow:2px 2px 10px rgba(0,0,0,0.2);
+z-index:50;
+}
+
+/* TEXTO INFERIOR DERECHO */
+
+.textoInferior{
+position:fixed;
+bottom:20px;
+right:30px;
+font-family:'Great Vibes', cursive;
+font-size:34px;
+color:#ff4fa3;
+text-shadow:2px 2px 10px rgba(0,0,0,0.2);
+z-index:50;
+}
 
 body{
 margin:0;
@@ -143,6 +169,13 @@ opacity:0;
 </head>
 
 <body>
+<div class="textoSuperior">
+💐 Feliz Día de la Mujer, Medali
+</div>
+
+<div class="textoInferior">
+Renso
+</div>
 
 <!-- PANTALLA INICIAL -->
 
@@ -198,7 +231,7 @@ const texto=document.getElementById("mensaje")
 
 const frases=[
 
-"🌸 Hoy es el Día de la Mujer, y aunque nos conocemos hace poco, quería tomarme un momento para decirte algo.",
+"🌸 Hoy es el Día de la Mujer y, aunque nos conocemos hace poco, quería tomarme un momento para decirte algo.",
 
 "✨ Desde que empezamos a hablar sentí que eras una persona diferente.",
 
@@ -206,13 +239,13 @@ const frases=[
 
 "🌷 En poco tiempo me he dado cuenta de que eres alguien muy agradable de conocer.",
 
-"🌼 No siempre es fácil encontrar personas con esa vibra tan bonita.",
+"🌼 No siempre es fácil encontrar personas con una vibra tan bonita.",
 
-"💫 Por eso me alegra haber coincidido contigo.",
+"💫 Por eso me alegra mucho haber coincidido contigo.",
 
-"🌹 Y hoy solo quería decirte algo sencillo pero sincero:",
+"🌹 Hoy solo quería decirte algo sencillo, pero muy sincero:",
 
-"💖 ME ALEGRA HABERTE CONOCIDO <span class='nombre'>MEDALI</span> 😊"
+"💖 Me alegra haberte conocido, <span class='nombre'>Medali</span>. 😊"
 
 ]
 
