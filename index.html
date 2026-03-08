@@ -110,7 +110,7 @@ opacity:0;
 </div>
 
 <div class="video">
-<video id="videoMujer" autoplay loop playsinline>
+<video id="videoMujer" autoplay loop playsinline preload="auto">
 <source src="video.mp4" type="video/mp4">
 </video>
 </div>
@@ -302,21 +302,24 @@ setInterval(crearFuegoArtificial,1500)
 
 /* VIDEO CON SONIDO */
 
-const video=document.getElementById("videoMujer")
+const video = document.getElementById("videoMujer")
 
-video.volume=1
+video.volume = 1
+video.muted = false
 
-window.addEventListener("load",()=>{
+function iniciarVideo(){
+video.play().catch(()=>{})
+}
 
-video.play().catch(()=>{
+window.addEventListener("load", iniciarVideo)
 
-document.body.addEventListener("click",()=>{
+/* activar sonido en la primera interacción */
+
+document.addEventListener("click", () => {
+video.muted = false
 video.play()
-},{once:true})
+},{ once:true })
 
-})
-
-})
 
 </script>
 
