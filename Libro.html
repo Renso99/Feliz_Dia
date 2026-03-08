@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Día de la Mujer</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#ff9ecb,#ffd6ea);
+font-family:Arial;
+overflow:hidden;
+}
+
+/* NOMBRE */
+
+.nombre{
+color:#ff69b4;
+font-family:'Brush Script MT',cursive;
+font-size:32px;
+font-weight:bold;
+}
+
+/* CONTENEDOR */
+
+.container{
+display:flex;
+align-items:center;
+gap:60px;
+background:white;
+padding:50px;
+border-radius:20px;
+box-shadow:0 30px 60px rgba(0,0,0,0.25);
+z-index:10;
+}
+
+/* TEXTO */
+
+.texto{
+width:350px;
+font-size:22px;
+line-height:1.6;
+}
+
+.cursor{
+display:inline-block;
+width:3px;
+background:black;
+margin-left:3px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+
+/* VIDEO */
+
+.video video{
+width:260px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,0.3);
+animation:flotar 4s ease-in-out infinite;
+}
+
+@keyframes flotar{
+0%{transform:translateY(0)}
+50%{transform:translateY(-15px)}
+100%{transform:translateY(0)}
+}
+
+/* ELEMENTOS QUE CAEN */
+
+.elemento{
+position:absolute;
+top:-50px;
+animation:caer linear infinite;
+}
+
+@keyframes caer{
+
+0%{
+transform:translateY(-50px) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="texto">
+<span id="mensaje"></span><span class="cursor"></span>
+</div>
+
+<div class="video">
+<video id="videoMujer" autoplay loop playsinline>
+<source src="video.mp4" type="video/mp4">
+</video>
+</div>
+
+</div>
+
+<script>
+
+/* MENSAJES */
+
+const texto=document.getElementById("mensaje")
+
+const frases=[
+
+"🌸 Hoy es el Día de la Mujer, y aunque nos conocemos hace poco, quería tomarme un momento para decirte algo.",
+
+"✨ Desde que empezamos a hablar sentí que eras una persona diferente.",
+
+"💖 Me gusta mucho la energía que transmites y lo natural que se sienten las conversaciones contigo.",
+
+"🌷 En poco tiempo me he dado cuenta de que eres alguien muy agradable de conocer.",
+
+"🌼 No siempre es fácil encontrar personas con esa vibra tan bonita.",
+
+"💫 Por eso me alegra haber coincidido contigo.",
+
+"🌹 Y hoy solo quería decirte algo sencillo pero sincero:",
+
+"💖 ME ALEGRA HABERTE CONOCIDO <span class='nombre'>MEDALI</span> 😊"
+
+]
+
+let fraseIndex=0
+let letraIndex=0
+
+function escribir(){
+
+/* última frase (se escribe completa para que funcione el HTML) */
+
+if(fraseIndex === frases.length-1){
+
+texto.innerHTML = frases[fraseIndex]
+return
+
+}
+
+if(letraIndex < frases[fraseIndex].length){
+
+texto.innerHTML += frases[fraseIndex].charAt(letraIndex)
+
+letraIndex++
+
+setTimeout(escribir,40)
+
+}else{
+
+fraseIndex++
+
+if(fraseIndex < frases.length){
+
+setTimeout(()=>{
+
+texto.innerHTML=""
+letraIndex=0
+
+escribir()
+
+},5000)
+
+}
+
+}
+
+}
+
+escribir()
+
+/* CORAZONES Y FLORES */
+
+function crearElemento(){
+
+const elemento=document.createElement("div")
+
+elemento.classList.add("elemento")
+
+/* EMOJIS */
+
+const emojis=["💖","🌼","🌸","🌹"]
+
+/* PALABRAS */
+
+const palabras=[
+"Medali",
+"Especial",
+"Auténtica",
+"Alegre",
+"Amable",
+"Encantadora",
+"Única",
+"Brillante",
+"Dulce",
+"Inspiradora",
+"Sonrisa",
+"Bonita",
+"✨"
+]
+
+/* decidir si cae emoji o palabra */
+
+if(Math.random() < 0.6){
+
+elemento.innerHTML=emojis[Math.floor(Math.random()*emojis.length)]
+
+}else{
+
+elemento.innerHTML=palabras[Math.floor(Math.random()*palabras.length)]
+
+elemento.style.fontSize="18px"
+elemento.style.fontWeight="bold"
+elemento.style.color="#ff69b4"
+
+}
+
+elemento.style.left=Math.random()*100+"vw"
+
+elemento.style.fontSize=(Math.random()*15+15)+"px"
+
+elemento.style.animationDuration=(Math.random()*5+5)+"s"
+
+document.body.appendChild(elemento)
+
+setTimeout(()=>{
+elemento.remove()
+},9000)
+
+}
+
+setInterval(crearElemento,400)
+
+/* FUEGOS ARTIFICIALES */
+
+function crearFuegoArtificial(){
+
+const x=Math.random()*window.innerWidth
+const y=Math.random()*window.innerHeight*0.6
+
+for(let i=0;i<25;i++){
+
+const p=document.createElement("div")
+
+p.style.position="absolute"
+p.style.left=x+"px"
+p.style.top=y+"px"
+
+p.style.width="6px"
+p.style.height="6px"
+
+p.style.borderRadius="50%"
+
+p.style.background=`hsl(${Math.random()*360},100%,60%)`
+
+document.body.appendChild(p)
+
+const angulo=Math.random()*2*Math.PI
+const distancia=Math.random()*120
+
+const dx=Math.cos(angulo)*distancia
+const dy=Math.sin(angulo)*distancia
+
+p.animate(
+[
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${dx}px,${dy}px)`,opacity:0}
+],
+{
+duration:1200,
+easing:"ease-out"
+})
+
+setTimeout(()=>{
+p.remove()
+},1200)
+
+}
+
+}
+
+setInterval(crearFuegoArtificial,1500)
+
+/* VIDEO CON SONIDO */
+
+const video=document.getElementById("videoMujer")
+
+video.volume=1
+
+window.addEventListener("load",()=>{
+
+video.play().catch(()=>{
+
+document.body.addEventListener("click",()=>{
+video.play()
+},{once:true})
+
+})
+
+})
+
+</script>
+
+</body>
+</html>
